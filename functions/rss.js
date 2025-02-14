@@ -24,8 +24,7 @@ export async function onRequest(context) {
     const r2 = new Cloudflare.R2Binding({
       accessKeyId: r2AccessKeyId,
       secretAccessKey: r2SecretAccessKey,
-      accountId: r2AccountId,
-      region: r2Region
+      
     });
   
     try {
