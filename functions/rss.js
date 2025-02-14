@@ -11,13 +11,11 @@ export async function onRequest(context) {
     const bucketName = process.env.R2_BUCKET_NAME;
     const r2AccessKeyId = process.env.R2_ACCESS_KEY_ID;
     const r2SecretAccessKey = process.env.R2_SECRET_ACCESS_KEY;
-    const r2AccountId = process.env.R2_ACCOUNT_ID;
-    const r2Region = process.env.R2_REGION || 'auto';
-    const publicBucketUrlBase = `https://${bucketName}.${r2AccountId}.r2.cloudflarestorage.com`;
+    const publicBucketUrlBase = process.env.R2_ENDPOINT ;
     const podcastPrefix = `${podcastName}/`;
   
     // Ensure environment variables are set
-    if (!bucketName || !r2AccessKeyId || !r2SecretAccessKey || !r2AccountId) {
+    if (!bucketName || !r2AccessKeyId || !r2SecretAccessKey ) {
       console.error("Missing R2 environment variables!");
       return new Response("Error: Missing R2 configuration. Check environment variables.", { status: 500 });
     }
